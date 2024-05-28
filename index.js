@@ -75,7 +75,7 @@ const init = async () => {
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now(),
     ranking INTEGER DEFAULT 3 NOT NULL,
-    txt VARCHAR(255) NOT NULL
+    txt VARCHAR(55) NOT NULL
     );
     `;
     await client.query(SQL)
