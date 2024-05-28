@@ -13,7 +13,10 @@ const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/t
 // Routes
 app.post('/api/notes', async (req, res, next) => {
     try {
-        const SQL = 'INSERT INTO notes(txt) VALUES($1) RETURNING *';
+        const SQL = `
+        INSERT INTO notes(txt)
+        VALUES($1) RETURNING *
+        `;
         const response = await client.query(SQL, [req.body.txt]);
         res.send(response.rows[0]);
     } catch (error) {
@@ -23,7 +26,10 @@ app.post('/api/notes', async (req, res, next) => {
 
 app.get('/api/notes', async (req, res, next) => {
     try {
-        const SQL = 'SELECT * from notes ORDER BY created_at DESC';
+        const SQL = `
+        SELECT * from notes 
+        ORDER BY created_at DESC
+        `;
         const response = await client.query(SQL);
         res.send(response.rows);
     } catch (error) {
@@ -33,7 +39,10 @@ app.get('/api/notes', async (req, res, next) => {
 
 app.put('/api/notes/:id', async (req, res, next) => {
     try {
-        const SQL = 'UPDATE notes SET txt=$1, rankings=$2, updated_at=now() WHERE id=$3 RETURNING *';
+        const SQL = `
+        UPDATE notes SET txt=$1, rankings=$2, updated_at=now() 
+        WHERE id=$3 RETURNING *
+        `;
         const response = await client.query(SQL, [req.body.txt, req.body.ranking, req.params.id]);
         res.send(response.rows[0]);
     } catch (error) {
@@ -43,7 +52,10 @@ app.put('/api/notes/:id', async (req, res, next) => {
 
 app.delete('/api/notes/:id', async (req, res, next) => {
     try {
-        const SQL = 'DELETE from notes WHERE id = $1';
+        const SQL = `
+        DELETE from notes 
+        WHERE id = $1
+        `;
         const response = await client.query(SQL, [req.params.id]);
         res.sendStatus(204);
     } catch (error) {
