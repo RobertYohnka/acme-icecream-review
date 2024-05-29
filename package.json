@@ -4,10 +4,7 @@
   "description": "Notes API",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:dev": "nodemon index.js",
-    "test": "jest",
-    "lint": "prettier"
+    "start:dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

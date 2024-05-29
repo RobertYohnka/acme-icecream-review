@@ -81,7 +81,7 @@ const init = async () => {
     await client.query(SQL)
     console.log('tables created');
 
-    const SQL = `
+    SQL = `
     INSERT INTO notes(txt, ranking) VALUES('learn express', 5);
     INSERT INTO notes(txt, ranking) VALUES('write SQL queries', 4);
     INSERT INTO notes(txt, ranking) VALUES('create routes', 2);
